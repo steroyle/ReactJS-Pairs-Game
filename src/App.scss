@@ -1,0 +1,89 @@
+h1,
+p {
+  text-align: center;
+}
+
+.header {
+  margin: auto;
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.score {
+  text-align: left;
+}
+.timer {
+  text-align: right;
+}
+.score,
+.timer {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-list {
+  padding: 10px;
+  margin: auto;
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.card {
+  position: relative;
+  height: 90px;
+  width: 100%;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+  &:hover {
+    cursor: pointer;
+  }
+  &__front,
+  &__back {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    transition: transform 1s;
+    backface-visibility: hidden;
+  }
+  &__front {
+    pointer-events: none;
+    background: #e9f8ff;
+    font-size: 50px;
+    transform: rotateY(180deg);
+  }
+  &__back {
+    background: #18babb;
+    color: #36d7d8;
+    font-size: 40px;
+  }
+}
+
+.card.selected {
+  /* to prevent a card being clicked twice #DirtyCheaters */
+  pointer-events: none;
+}
+
+.card.selected,
+.card.matched {
+  .card__front {
+    transform: rotateY(0deg);
+  }
+  .card__back {
+    transform: rotateY(180deg);
+  }
+}
